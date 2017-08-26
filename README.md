@@ -1,3 +1,10 @@
+##Changelog
+- 只能管理员添加用户，不能自行注册
+- 修改用户权限控制
+- 登录后默认跳转到dashboard
+
+<hr>
+
 ## Introduction
 
 dashboard is the Open-Falcon unified default forntend component, including:

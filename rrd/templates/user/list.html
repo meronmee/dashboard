@@ -55,10 +55,10 @@
                             root
                             {%elif user.is_admin()%}
 							<input type="checkbox" checked="checked" onclick="set_role('{{user.id}}', this);">
-							管理员
+							设为管理员
 							{%else%}
 							<input type="checkbox" onclick="set_role('{{user.id}}', this);">
-							管理员
+							设为管理员
 							{%endif%}
 						</div>
 						{%endif%}
@@ -77,10 +77,30 @@
                             <a href="/admin/user/{{user.id}}/edit" class="orange" style="text-decoration:none;">
 								<span class="glyphicon glyphicon-edit"></span>
 							</a>
+							{%elif g.user.is_root() and not user.is_root() %}
+                            <a href="/admin/user/{{user.id}}/edit" class="orange" style="text-decoration:none;">
+								<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							{%elif g.user.is_admin() and not (user.is_admin() or user.is_root()) %}
+                            <a href="/admin/user/{{user.id}}/edit" class="orange" style="text-decoration:none;">
+								<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							{%endif%}
+
+
+							{%if g.user.is_root() and not user.is_root() %}
+							<!-- 超管 -->
 							<span class="cut-line">¦</span>
 							<a href="javascript:delete_user('{{user.id}}');" class="orange" style="text-decoration:none;">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
+                            {%elif g.user.is_admin() and not (user.is_admin() or user.is_root()) %}
+                            <!-- 管理员 -->
+							<span class="cut-line">¦</span>
+							<a href="javascript:delete_user('{{user.id}}');" class="orange" style="text-decoration:none;">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+							{%endif%}
 						</div>
 						{%endif%}
 
