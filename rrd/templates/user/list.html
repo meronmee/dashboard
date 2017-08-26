@@ -74,6 +74,7 @@
 
                         {%if g.user.is_root() or g.user.is_admin() %}
 						<div class="pull-right">
+							{%if g.user.id==user.id %}
                             <a href="/admin/user/{{user.id}}/edit" class="orange" style="text-decoration:none;">
 								<span class="glyphicon glyphicon-edit"></span>
 							</a>
