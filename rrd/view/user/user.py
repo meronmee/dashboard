@@ -114,8 +114,8 @@ def user_create():
         im = request.form.get("im", "")
         qq = request.form.get("qq", "")
 
-        if not name or not cnname or not password or not email:
-            ret["msg"] = "not all form item entered"
+        if not name or not cnname or not password or not phone or not email:
+            ret["msg"] = "not all required item entered"
             return json.dumps(ret)
         
         try:
